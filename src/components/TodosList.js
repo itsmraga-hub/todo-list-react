@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 
 class TodosList extends PureComponent {
   render() {
-    const { todos, handleChangeProps, deleteTodoProps } = this.props;
+    const { todos, handleChangeProps, deleteTodoProps, setUpdateProps } = this.props;
     return (
       <ul>
         {todos.map((todo) => (
@@ -12,6 +12,7 @@ class TodosList extends PureComponent {
             todo={todo}
             handleChangeProps={handleChangeProps}
             deleteTodoProps={deleteTodoProps}
+            setUpdateProps={setUpdateProps}
           />
         ))}
       </ul>
