@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import TodoItem from './TodoItem';
 
@@ -25,10 +25,11 @@ class TodosList extends PureComponent {
 }
 
 TodosList.propTypes = {
-  todos: PropType.arrayOf.isRequired,
-  handleChangeProps: PropType.func.isRequired,
-  deleteTodoProps: PropType.func.isRequired,
-  setUpdateProps: PropType.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  todos: PropTypes.array.isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  setUpdateProps: PropTypes.func.isRequired,
 };
 
 export default TodosList;

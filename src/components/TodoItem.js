@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import styles from './TodoItem.module.css';
 
@@ -74,10 +74,11 @@ class TodoItem extends Component {
 }
 
 TodoItem.propTypes = {
-  todo: PropType.shape.isRequired,
-  handleChangeProps: PropType.func.isRequired,
-  deleteTodoProps: PropType.func.isRequired,
-  setUpdateProps: PropType.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  todo: PropTypes.object.isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  setUpdateProps: PropTypes.func.isRequired,
 };
 
 export default TodoItem;
