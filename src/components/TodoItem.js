@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 
 import styles from './TodoItem.module.css';
 
@@ -7,47 +8,53 @@ class TodoItem extends Component {
     super(props);
     this.state = {
       editing: false,
-    }
+    };
   }
+
   handleEditing = () => {
     this.setState({
       editing: true,
-    })
-    console.log('Edit mode');
+    });
   }
-  
+
   handleUpdatedDone = (e) => {
-    if (e.key === "Enter") {
-      this.setState({ editing: false })
+    if (e.key === 'Enter') {
+      this.setState({ editing: false });
     }
   }
 
   render() {
     const completedStyle = {
-      fontStyle: "italic",
-      color: "#595959",
+      fontStyle: 'italic',
+      color: '#595959',
       opacity: 0.4,
-      textDecoration: "line-through",
-    }
+      textDecoration: 'line-through',
+    };
 
-    const { todo, handleChangeProps, deleteTodoProps, setUpdateProps } = this.props;
+    const {
+      todo, handleChangeProps, deleteTodoProps, setUpdateProps,
+    } = this.props;
     const { id, title, completed } = todo;
 
-    let viewMode = {}
-    let editMode = {}
+    const viewMode = {};
+    const editMode = {};
+    const { editing } = this.state;
 
-    if (this.state.editing) {
-      viewMode.display = "none"
+    if (editing) {
+      viewMode.display = 'none';
     } else {
-      editMode.display = "none"
+      editMode.display = 'none';
     }
 
     return (
       <li className={styles.item}>
         <div onDoubleClick={this.handleEditing} style={viewMode}>
-          <input type="checkbox"
+          <input
+            type="checkbox"
             className={styles.checkbox}
-            checked={completed} onChange={() => handleChangeProps(id)} />
+            checked={completed}
+            onChange={() => handleChangeProps(id)}
+          />
           <button type="button" onClick={() => deleteTodoProps(id)}>Delete</button>
           <span style={completed ? completedStyle : null}>
             {title}
@@ -65,5 +72,12 @@ class TodoItem extends Component {
     );
   }
 }
+
+TodoItem.propTypes = {
+  todo: PropType.shape.isRequired,
+  handleChangeProps: PropType.func.isRequired,
+  deleteTodoProps: PropType.func.isRequired,
+  setUpdateProps: PropType.func.isRequired,
+};
 
 export default TodoItem;

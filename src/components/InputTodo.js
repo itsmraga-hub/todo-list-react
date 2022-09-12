@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 
 class InputTodo extends Component {
   constructor(props) {
@@ -20,11 +21,12 @@ class InputTodo extends Component {
     const { addTodoItemProps } = this.props;
     if (title.trim()) {
       addTodoItemProps(title);
-        this.setState({
+      this.setState({
         title: '',
-    });
+      });
     } else {
-      alert('Please write item')
+      // eslint-disable-next-line no-alert
+      alert('Please write item');
     }
   }
 
@@ -38,11 +40,16 @@ class InputTodo extends Component {
           className="input-text"
           value={title}
           onChange={this.onChange}
-          name="title" />
+          name="title"
+        />
         <button type="button" className="input-submit">Submit</button>
       </form>
     );
   }
 }
+
+InputTodo.propTypes = {
+  addTodoItemProps: PropType.func.isRequired,
+};
 
 export default InputTodo;

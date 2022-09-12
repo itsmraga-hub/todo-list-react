@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
 import Header from './Header';
 import InputTodo from './InputTodo';
@@ -63,11 +64,12 @@ class TodoContainer extends Component {
     this.setState({
       todos: todos.map((todo) => {
         if (todo.id === id) {
-          todo.title = updatedTitle
+          // eslint-disable-next-line no-param-reassign
+          todo.title = updatedTitle;
         }
-        return todo
+        return todo;
       }),
-    })
+    });
   }
 
   render() {
