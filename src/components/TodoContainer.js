@@ -9,23 +9,7 @@ class TodoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        {
-          id: uuidv4(),
-          title: 'Work on a few react projects',
-          completed: true,
-        },
-        {
-          id: uuidv4(),
-          title: 'Practise DSA',
-          completed: true,
-        },
-        {
-          id: uuidv4(),
-          title: 'Master skills',
-          completed: false,
-        },
-      ],
+      todos: [],
     };
   }
 
@@ -71,6 +55,35 @@ class TodoContainer extends Component {
       }),
     });
   }
+
+  // componentDidMount = async () => {
+  //   const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=10');
+  //   const data = await response.json();
+  //   this.setState({
+  //     todos: data,
+  //   });
+  // }
+
+  componentDidMount = () => {
+    const data = JSON.parse(localStorage.getItem('todos'));
+    if (data) {
+      this.setState({
+        todos: data,
+      });
+    }
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    const { todos } = this.state;
+    if (prevState.todos !== todos) {
+      const temp = JSON.stringify(todos);
+      localStorage.setItem('todos', temp);
+    }
+  }
+
+  // componentWillUnmount = () => {
+  //   console.log('Cleaning up');
+  // }
 
   render() {
     const { todos } = this.state;
